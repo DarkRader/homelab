@@ -2,3 +2,7 @@
 kubectl = "0.37.1"
 terraform = "1.17.0"
 pre-commit = "4.6.2"
+
+[tasks.pre-commit]
+description = "Run all pre-commit hooks"
+run = "pre-commit run --all-files"
