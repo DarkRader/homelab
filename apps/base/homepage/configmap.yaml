@@ -17,7 +17,8 @@ data:
             - icon: flux.png
               href: https://fluxcd.io/
   widgets.yaml: ""
-  kubernetes.yaml: ""
+  kubernetes.yaml: |
+    mode: cluster
   docker.yaml: ""
   custom.css: ""
   custom.js: ""
