@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-config
+  namespace: homepage
+data:
+  settings.yaml: |
+    title: Herta Station Dashboard
+  bookmarks.yaml: |
+    - Developer:
+        - GitHub:
+            - icon: github.png
+              href: https://github.com/
+  services.yaml: |
+    - Cluster Services:
+        - Flux CD:
+            - icon: flux.png
+              href: https://fluxcd.io/
