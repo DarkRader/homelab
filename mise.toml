@@ -7,3 +7,53 @@ flux2 = "2.10.0"
 [tasks.pre-commit]
 description = "Run all pre-commit hooks"
 run = "pre-commit run --all-files"
+
+[tasks."flux:sync"]
+description = "Sync flux-system Git repository"
+run = "flux reconcile source git flux-system"
+
+[tasks."flux:reconcile"]
+description = "Reconcile Git source and all kustomizations (flux-system and apps)"
+run = """
+flux reconcile source git flux-system
+flux reconcile kustomization flux-system
+flux reconcile kustomization apps
+"""
+
+[tasks."flux:reconcile-apps"]
+description = "Reconcile apps kustomization with Git source"
+run = "flux reconcile kustomization apps --with-source"
+
+[tasks."flux:reconcile-system"]
+description = "Reconcile flux-system kustomization with Git source"
+run = "flux reconcile kustomization flux-system --with-source"
+
+[tasks."flux:status"]
+description = "Show status of Flux git sources and kustomizations"
+run = """
+echo "=== Git Repositories ==="
+flux get sources git
+echo ""
+echo "=== Kustomizations ==="
+flux get kustomizations
+"""
+
+[tasks."flux:logs"]
+description = "View Flux controller logs (defaults to --level=error)"
+run = "flux logs ${@:---level=error}"
+
+[tasks."flux:check"]
+description = "Check Flux installation and component health"
+run = "flux check"
+
+[tasks."flux:bootstrap"]
+description = "Bootstrap Flux for cluster (default: herta) -> mise run flux:bootstrap [cluster]"
+run = """
+CLUSTER="${1:-herta}"
+flux bootstrap github \
+  --owner=DarkRader \
+  --repository=homelab \
+  --branch=main \
+  --path="./clusters/${CLUSTER}" \
+  --personal
+"""

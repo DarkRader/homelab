@@ -16,3 +16,8 @@ data:
         - Flux CD:
             - icon: flux.png
               href: https://fluxcd.io/
+  widgets.yaml: ""
+  kubernetes.yaml: ""
+  docker.yaml: ""
+  custom.css: ""
+  custom.js: ""
