@@ -1,7 +1,8 @@
 [tools]
-kubectl = "0.37.1"
+kubectl = "1.37.1"
 terraform = "1.17.0"
 pre-commit = "4.6.2"
+flux2 = "2.10.0"
 
 [tasks.pre-commit]
 description = "Run all pre-commit hooks"
