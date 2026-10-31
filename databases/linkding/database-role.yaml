@@ -1,0 +1,12 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: linkding-role
+  namespace: postgres
+spec:
+  cluster:
+    name: postgres-cluster
+  name: linkding
+  login: true
+  passwordSecret:
+    name: linkding-db-creds
