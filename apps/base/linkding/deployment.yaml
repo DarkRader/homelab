@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: linkding
-  namespace: linkding
 spec:
   replicas: 1
   selector:
@@ -13,8 +12,35 @@ spec:
       labels:
         app: linkding
     spec:
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
+        fsGroup: 33
+        
       containers:
       - name: linkding
         image: sissbruecker/linkding:1.45.0
+
+        securityContext:
+          allowPrivilegeEscalation: false
+
+        envFrom:
+          - configMapRef:
+              name: linkding-configmap
+          - secretRef:
+              name: linkding-secrets
+        
         ports:
-        - containerPort: 9090
+          - containerPort: 4001
+            protocol: TCP
+
+        volumeMounts:
+          - name: linkding-data
+            mountPath: /etc/linkding/data
+
+      restartPolicy: Always
+
+      volumes:
+        - name: linkding-data
+          persistentVolumeClaim:
+            claimName: linkding-data
