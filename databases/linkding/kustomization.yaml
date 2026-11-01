@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - database.yaml
   - database-role.yaml
-  - secrets.yaml 
+  - secrets.yaml

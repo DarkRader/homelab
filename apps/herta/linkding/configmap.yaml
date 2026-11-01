@@ -9,4 +9,3 @@ data:
   LD_DB_DATABASE: linkding
   LD_DB_PORT: "5432"
   LD_DB_HOST: postgres-cluster-rw.postgres.svc.cluster.local
-  

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./infrastructure/controllers/base/cloudnative-pg
+  path: ./infrastructure/controllers/herta
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,7 +19,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./infrastructure/configs/base/postgres
+  path: ./infrastructure/configs/herta
   prune: true
   sourceRef:
     kind: GitRepository
