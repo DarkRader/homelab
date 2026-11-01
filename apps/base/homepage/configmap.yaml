@@ -50,7 +50,7 @@ data:
     - Application:
         - Linkding:
             icon: mdi-bookmark-box-multiple-#38bdf8
-            href: http://192.168.18.41:9000
+            href: http://192.168.18.41:4001
             description: Bookmark Manager
 
         - Home Assistant - Not Exist Yet:
