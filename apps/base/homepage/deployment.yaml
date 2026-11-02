@@ -14,6 +14,10 @@ spec:
         app.kubernetes.io/name: homepage
     spec:
       serviceAccountName: homepage
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: homepage
           image: ghcr.io/gethomepage/homepage:v2.7.0
