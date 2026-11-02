@@ -22,6 +22,16 @@ spec:
               value: "homepage.192.168.18.41.sslip.io"
           ports:
             - containerPort: 3000
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
+            capabilities:
+              drop:
+                - ALL
+
           volumeMounts:
             - mountPath: /app/config/custom.js
               name: homepage-config
