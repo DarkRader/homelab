@@ -1,0 +1,25 @@
+- Repositories:
+    - Homelab:
+        - icon: si-github-#38bdf8
+          href: https://github.com/DarkRader/homelab
+- Cloud Services:
+    - Cloudflare:
+        - icon: si-cloudflare-#38bdf8
+          href: https://dash.cloudflare.com/
+    - Tailscale:
+        - icon: si-tailscale-#38bdf8
+          href: https://console.tailscale.com/
+- Cloud Platforms:
+    - Google Cloud:
+        - icon: si-googlecloud-#38bdf8
+          href: https://console.cloud.google.com/
+- Services:
+    - GitHub:
+        - icon: si-github-#38bdf8
+          href: https://github.com/
+    - YouTube:
+        - icon: si-youtube-#38bdf8
+          href: https://youtube.com/
+    - Shikimori:
+        - icon: si-shikimori-#38bdf8
+          href: https://shikimori.io/

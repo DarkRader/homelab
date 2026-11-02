@@ -1,0 +1,9 @@
+title: Herta Station Dashboard
+theme: dark
+color: slate
+background: https://wallpaperaccess.com/full/4592820.jpg
+cardBlur: xl
+headerStyle: clean
+layout:
+  style: columns
+  columns: 4

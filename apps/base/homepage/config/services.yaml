@@ -1,0 +1,44 @@
+- Infrastructure:
+    - Router:
+        icon: si-openrouter-#38bdf8
+        href: https://192.168.18.1:80/
+        description: Home Router
+    - Flux CD:
+        icon: si-flux-#38bdf8
+        href: https://fluxcd.io/
+        description: GitOps Delivery Engine
+
+- Application:
+    - Linkding:
+        icon: mdi-bookmark-box-multiple-#38bdf8
+        href: http://192.168.18.41:4001
+        description: Bookmark Manager
+
+    - Home Assistant - Not Exist Yet:
+        icon: si-homeassistant-#38bdf8
+        href: http://homeassistant.192.168.18.41.sslip.io
+        description: Home Automation Hub
+
+- Monitoring:
+    - Uptime Kuma - Not Exist Yet:
+        icon: si-uptimekuma-#38bdf8
+        href: http://192.168.18.41:3030
+        description: Service Monitor & Status
+    - Prometheus - Not Exist Yet:
+        icon: si-prometheus-#38bdf8
+        href: http://192.168.18.41:3030
+        description: Metrics & Alerts
+    - Grafana - Not Exist Yet:
+        icon: si-grafana-#38bdf8
+        href: http://192.168.18.41:3030
+        description: Visualization Dashboards
+
+- Security and Identity:
+    - Zitadel - Not Exist Yet:
+        icon: mdi-shield-key-#38bdf8
+        href: http://192.168.18.41:3030
+        description: Identity & Access Management
+    - Vaulwarden - Not Exist Yet:
+        icon: si-vaultwarden-#38bdf8
+        href: http://192.168.18.41:3030
+        description: Password Management
