@@ -12,4 +12,3 @@ configMapGenerator:
 
 configurations:
   - kustomizeconfig.yaml
- 
