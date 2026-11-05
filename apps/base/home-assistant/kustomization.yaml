@@ -4,4 +4,3 @@ namespace: home-assistant
 resources:
   - storage.yaml
   - deployment.yaml
- 
