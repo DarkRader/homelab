@@ -23,7 +23,7 @@ spec:
           image: ghcr.io/gethomepage/homepage:v2.7.0
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
-              value: "homepage.192.168.18.41.sslip.io"
+              value: "homepage.192.168.18.195.sslip.io"
           ports:
             - containerPort: 3000
 
