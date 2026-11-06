@@ -8,6 +8,10 @@ spec:
     matchLabels:
       cilium.io/ingress: "true"
 
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/hostname: lenovorader
+
   # IMPORTANT: if externalIPss is desired, externalIPs.enabled=true must be set in values.yaml
   # externalIPs: true
   loadBalancerIPs: true
