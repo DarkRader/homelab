@@ -3,6 +3,10 @@ ipam:
 
 kubeProxyReplacement: true
 
+devices:
+  - "!tailscale+"
+  - "en+"
+
 securityContext:
   capabilities:
     ciliumAgent:
