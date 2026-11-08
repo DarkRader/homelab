@@ -4,6 +4,7 @@ metadata:
   name: linkding-configmap
 data:
   LD_SERVER_PORT: "4001"
+  LD_SUPERUSER_NAME: DarkRader
   LD_DB_ENGINE: postgres
   LD_DB_USER: linkding
   LD_DB_DATABASE: linkding
