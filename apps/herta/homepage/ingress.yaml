@@ -5,11 +5,11 @@ metadata:
   labels:
     app.kubernetes.io/name: homepage
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: homepage.192.168.18.195.sslip.io
+    external-dns.alpha.kubernetes.io/hostname: homepage.homenir.com
 spec:
   ingressClassName: cilium
   rules:
-    - host: homepage.192.168.18.195.sslip.io
+    - host: homepage.homenir.com
       http:
         paths:
           - path: "/"

@@ -5,11 +5,11 @@ metadata:
   labels:
     app.kubernetes.io/name: linkding
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: linkding.192.168.18.195.sslip.io
+    external-dns.alpha.kubernetes.io/hostname: linkding.homenir.com
 spec:
   ingressClassName: cilium
   rules:
-    - host: linkding.192.168.18.195.sslip.io
+    - host: linkding.homenir.com
       http:
         paths:
           - path: "/"
