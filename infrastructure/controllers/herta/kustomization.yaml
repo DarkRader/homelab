@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - cloudnative-pg
   - cilium
+  - external-secrets
