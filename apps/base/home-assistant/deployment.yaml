@@ -13,10 +13,10 @@ spec:
         app: home-assistant
         try: "0"
     spec:
-      # securityContext:
-      #   runAsUser: 3000
-      #   runAsGroup: 3000
-      #   fsGroup: 3000
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      nodeSelector:
+        kubernetes.io/hostname: mirader
 
       containers:
         - name: home-assistant
@@ -40,6 +40,9 @@ spec:
           volumeMounts:
             - name: home-assistant-config
               mountPath: /config
+            - name: dbus
+              mountPath: /run/dbus
+              readOnly: true
 
       restartPolicy: Always
 
@@ -47,3 +50,6 @@ spec:
         - name: home-assistant-config
           persistentVolumeClaim:
             claimName: home-assistant-config
+        - name: dbus
+          hostPath:
+            path: /run/dbus
