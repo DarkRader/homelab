@@ -26,8 +26,11 @@ spec:
               value: "Europe/Prague"
 
           securityContext:
-            allowPrivilegeEscalation: false
+            privileged: true
+            allowPrivilegeEscalation: true
             runAsUser: 0
+            appArmorProfile:
+              type: Unconfined
 
           # envFrom:
           #   - configMapRef:
