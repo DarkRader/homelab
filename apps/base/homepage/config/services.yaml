@@ -14,9 +14,9 @@
         href: http://linkding.homenir.com
         description: Bookmark Manager
 
-    - Home Assistant - Not Exist Yet:
+    - Home Assistant:
         icon: si-homeassistant-#38bdf8
-        href: http://homeassistant.192.168.18.41.sslip.io
+        href: http://ha.homenir.com
         description: Home Automation Hub
 
 - Monitoring:
