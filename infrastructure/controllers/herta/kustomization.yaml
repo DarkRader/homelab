@@ -4,3 +4,4 @@ resources:
   - cloudnative-pg
   - cilium
   - external-secrets
+  - node-bluez

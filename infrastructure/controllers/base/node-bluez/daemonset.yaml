@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-bluez
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: node-bluez
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: node-bluez
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: node-bluez
+    spec:
+      hostPID: true
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - mirader
+                      # - acerrader
+      containers:
+        - name: bluez-installer
+          image: ubuntu:24.04
+          securityContext:
+            privileged: true
+          command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Checking BlueZ status on host..."
+              nsenter -t 1 -m -u -i -n -p -- bash -c '
+                set -e
+                if ! which bluetoothd >/dev/null 2>&1; then
+                  echo "BlueZ not found. Installing bluez on host..."
+                  export DEBIAN_FRONTEND=noninteractive
+                  apt-get update
+                  apt-get install -y bluez
+                fi
+                if ! systemctl is-active --quiet bluetooth; then
+                  echo "Starting and enabling bluetooth.service..."
+                  systemctl enable --now bluetooth
+                fi
+                echo "BlueZ is successfully running on host."
+              '
+              echo "Host setup complete. Sleeping..."
+              exec sleep infinity
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
