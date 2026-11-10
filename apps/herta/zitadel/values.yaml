@@ -2,7 +2,8 @@ postgresql:
   enabled: false
 
 initJob:
-  enabled: false
+  enabled: true
+  command: "zitadel"
 
 setupJob:
   enabled: true
