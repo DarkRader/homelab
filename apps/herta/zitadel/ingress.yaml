@@ -12,10 +12,17 @@ spec:
     - host: auth.homenir.com
       http:
         paths:
+          - path: "/ui/v2/login"
+            pathType: Prefix
+            backend:
+              service:
+                name: zitadel-zitadel-login
+                port:
+                  number: 3000
           - path: "/"
             pathType: Prefix
             backend:
               service:
-                name: zitadel
+                name: zitadel-zitadel
                 port:
                   number: 8080
