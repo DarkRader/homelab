@@ -1,0 +1,43 @@
+postgresql:
+  enabled: false
+
+initJob:
+  enabled: false
+
+setupJob:
+  enabled: true
+
+zitadel:
+  masterkeySecretName: zitadel-secrets
+
+  configmapConfig:
+    ExternalDomain: auth.homenir.com
+    ExternalPort: 80
+    ExternalSecure: false
+    TLS:
+      Enabled: false
+    Database:
+      postgres:
+        Host: postgres-cluster-rw.postgres.svc.cluster.local
+        Port: 5432
+        Database: zitadel
+        User:
+          Username: zitadel
+          SSL:
+            Mode: disable
+        Admin:
+          Username: zitadel
+          SSL:
+            Mode: disable
+
+env:
+  - name: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: zitadel-secrets
+        key: db-password
+  - name: ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: zitadel-secrets
+        key: db-password
