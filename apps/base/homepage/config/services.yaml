@@ -34,9 +34,9 @@
         description: Visualization Dashboards
 
 - Security and Identity:
-    - Zitadel - Not Exist Yet:
+    - Zitadel:
         icon: mdi-shield-key-#38bdf8
-        href: http://192.168.18.41:3030
+        href: http://auth.homenir.com
         description: Identity & Access Management
     - Vaulwarden - Not Exist Yet:
         icon: si-vaultwarden-#38bdf8
