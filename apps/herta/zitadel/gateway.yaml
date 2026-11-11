@@ -1,0 +1,44 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: zitadel-gateway
+spec:
+  gatewayClassName: cilium
+  infrastructure:
+    labels:
+      cilium.io/ingress: "true"
+    annotations:
+      io.cilium/lb-ipam-ips: "192.168.18.196"
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      hostname: auth.homenir.com
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: zitadel
+spec:
+  parentRefs:
+    - name: zitadel-gateway
+  hostnames:
+    - auth.homenir.com
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /ui/v2/login
+      backendRefs:
+        - name: zitadel-zitadel-login
+          port: 3000
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: zitadel-zitadel
+          port: 8080

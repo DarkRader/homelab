@@ -4,7 +4,7 @@ namespace: zitadel
 
 resources:
   - secret.yaml
-  - ingress.yaml
+  - gateway.yaml
   - ../../base/zitadel/
 
 configMapGenerator:
