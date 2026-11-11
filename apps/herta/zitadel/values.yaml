@@ -30,6 +30,14 @@ zitadel:
           Username: zitadel
           SSL:
             Mode: disable
+    FirstInstance:
+      Org:
+        Human:
+          UserName: "admin"
+          FirstName: "Admin"
+          LastName: "Homenir"
+          Email: "admin@homenir.com"
+          PasswordChangeRequired: false
 
 env:
   - name: ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
@@ -42,3 +50,8 @@ env:
       secretKeyRef:
         name: zitadel-secrets
         key: db-password
+  - name: ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: zitadel-secrets
+        key: admin-password
