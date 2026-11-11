@@ -15,6 +15,7 @@ data:
   
   # OIDC Configuration
   LD_ENABLE_OIDC: "True"
+  LD_DISABLE_LOGIN_FORM: "True"
   OIDC_OP_AUTHORIZATION_ENDPOINT: "http://auth.homenir.com/oauth/v2/authorize"
   OIDC_OP_TOKEN_ENDPOINT: "http://auth.homenir.com/oauth/v2/token"
   OIDC_OP_USER_ENDPOINT: "http://auth.homenir.com/oidc/v1/userinfo"
