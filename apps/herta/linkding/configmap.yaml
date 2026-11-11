@@ -5,8 +5,18 @@ metadata:
 data:
   LD_SERVER_PORT: "4001"
   LD_SUPERUSER_NAME: DarkRader
+
+  # DB Configuration
   LD_DB_ENGINE: postgres
   LD_DB_USER: linkding
   LD_DB_DATABASE: linkding
   LD_DB_PORT: "5432"
   LD_DB_HOST: postgres-cluster-rw.postgres.svc.cluster.local
+  
+  # OIDC Configuration
+  LD_ENABLE_OIDC: "True"
+  OIDC_OP_AUTHORIZATION_ENDPOINT: "http://auth.homenir.com/oauth/v2/authorize"
+  OIDC_OP_TOKEN_ENDPOINT: "http://auth.homenir.com/oauth/v2/token"
+  OIDC_OP_USER_ENDPOINT: "http://auth.homenir.com/oidc/v1/userinfo"
+  OIDC_OP_JWKS_ENDPOINT: "http://auth.homenir.com/oauth/v2/keys"
+  OIDC_RP_CLIENT_ID: "399177444487070333"
