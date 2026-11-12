@@ -9,9 +9,13 @@ gcloud = "589.0.0"
 [env]
 CLOUDSDK_PYTHON = "{{env.HOME}}/.local/share/mise/installs/python/3.14.8/bin/python3"
 
-[tasks.hk]
+[tasks."hk:check"]
 description = "Run all hk hooks"
 run = "hk check --all"
+
+[tasks."hk:fix"]
+description = "Fix all hk hooks warnings"
+run = "hk check --all --fix"
 
 [tasks."flux:sync"]
 description = "Sync flux-system Git repository"
