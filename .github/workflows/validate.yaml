@@ -1,0 +1,25 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Codebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup mise (hk only)
+        uses: jdx/mise-action@v5.2.7
+        with:
+          install_args: "hk"
+
+      - name: Run validation hooks via mise
+        run: mise run hk:check
