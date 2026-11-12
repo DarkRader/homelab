@@ -1,34 +1,15 @@
 amends "package://github.com/jdx/hk/releases/download/v2.12.0/hk@2.12.0#/Config.pkl"
 import "package://github.com/jdx/hk/releases/download/v2.12.0/hk@2.12.0#/Builtins.pkl"
 
-// Migrated from .pre-commit-config.yaml by `hk migrate pre-commit`.
-
-// Steps using precommit() still run through pre-commit, which reads .pre-commit-config.yaml.
-// Replace them with builtins or commands, then delete that file.
-local function precommit(hook: String, stage: String): Step = new {
-  check = "pre-commit run --hook-stage \(stage) \(hook)" + (if (stage == "commit-msg" || stage == "prepare-commit-msg")
-    " --commit-msg-filename {{commit_msg_file}}"
-  else if (stage == "pre-commit" || stage == "pre-push" || stage == "manual")
-    " --files {{files}}"
-  else
-    "")
-  // pre-commit hooks may modify files in either mode
-  fix = check
-  check_first = false
-  // pre-commit applies the hook's own file filters
-  allow_binary = true
-  allow_symlinks = true
-}
-
-// Like pre-commit, report every failing step instead of stopping at the first
 fail_fast = false
 
 steps {
   ["trailing-whitespace"] = Builtins.trailing_whitespace
   ["end-of-file-fixer"] = Builtins.newlines
-  // no hk builtin for check-yaml from https://github.com/pre-commit/pre-commit-hooks
-  ["check-yaml"] = precommit("check-yaml", "pre-commit")
-  // no hk builtin for check-toml from https://github.com/pre-commit/pre-commit-hooks
-  ["check-toml"] = precommit("check-toml", "pre-commit")
+  ["check-yaml"] = new Step {
+    glob = List("**/*.yaml", "**/*.yml")
+    check = "ruby -ryaml -e 'ARGV.each { |f| YAML.load_stream(File.read(f)) }' {{files}}"
+  }
+  ["taplo"] = Builtins.taplo
   ["check-added-large-files"] = Builtins.check_added_large_files
 }

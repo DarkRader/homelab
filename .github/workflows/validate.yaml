@@ -16,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup mise (hk only)
+      - name: Setup mise (validation tools only)
         uses: jdx/mise-action@v5.2.7
         with:
-          install_args: "hk"
+          install_args: "hk taplo"
 
       - name: Run validation hooks via mise
-        run: mise run hk:check
+        run: mise run --skip-tools hk:check
