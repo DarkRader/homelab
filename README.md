@@ -9,7 +9,7 @@ A bare-metal, high-availability home Kubernetes cluster managed 100% declarative
 The cluster runs **K3s** across three bare-metal nodes:
 
 | Node | Role |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- |
 | **`lenovorader`** | Control-Plane |
 | **`acerrader`** | Worker |
 | **`mirader`** | Worker |
