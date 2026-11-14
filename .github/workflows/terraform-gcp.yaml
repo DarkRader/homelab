@@ -1,0 +1,86 @@
+name: Terraform GCP
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "infrastructure/iac/gcp/infra/**"
+  push:
+    branches: [main]
+    paths:
+      - "infrastructure/iac/gcp/infra/**"
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: terraform-gcp-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  TF_WORKING_DIR: infrastructure/iac/gcp/infra
+  WIF_PROVIDER: projects/383516500345/locations/global/workloadIdentityPools/github-actions-pool/providers/github-oidc
+  PLANNER_SA: terraform-planner@homelab-514120.iam.gserviceaccount.com
+  APPLIER_SA: terraform-applier@homelab-514120.iam.gserviceaccount.com
+
+jobs:
+  plan:
+    name: Terraform Plan (PR)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP (Read-Only Planner)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.PLANNER_SA }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.17.2
+
+      - name: Terraform Format, Init & Plan
+        run: |
+          terraform fmt -check -recursive
+          terraform init -backend-config=backend.hcl
+          terraform validate
+          terraform plan -no-color -lock-timeout=5m
+
+  apply:
+    name: Terraform Apply (Main)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.TF_WORKING_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP (Privileged Applier)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.APPLIER_SA }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.17.2
+
+      - name: Terraform Init & Apply
+        run: |
+          terraform init -backend-config=backend.hcl
+          terraform plan -out=tfplan -lock-timeout=5m
+          terraform apply -auto-approve tfplan
