@@ -52,7 +52,7 @@ jobs:
       - name: Terraform Format, Init & Plan
         run: |
           terraform fmt -check -recursive
-          terraform init -backend-config=backend.hcl
+          terraform init
           terraform validate
           terraform plan -no-color -lock-timeout=5m
 
@@ -81,6 +81,6 @@ jobs:
 
       - name: Terraform Init & Apply
         run: |
-          terraform init -backend-config=backend.hcl
+          terraform init
           terraform plan -out=tfplan -lock-timeout=5m
           terraform apply -auto-approve tfplan
