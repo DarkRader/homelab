@@ -1,5 +1,4 @@
 terraform {
-  required_version = "1.17.2"
 
   backend "gcs" {
     bucket = "homelab-514120-tf-state"

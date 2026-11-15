@@ -44,10 +44,10 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.PLANNER_SA }}
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup mise
+        uses: jdx/mise-action@v5.2.7
         with:
-          terraform_version: 1.17.2
+          install_args: "terraform"
 
       - name: Terraform Format, Init & Plan
         run: |
@@ -74,10 +74,10 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.APPLIER_SA }}
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Setup mise
+        uses: jdx/mise-action@v5.2.7
         with:
-          terraform_version: 1.17.2
+          install_args: "terraform"
 
       - name: Terraform Init & Apply
         run: |
