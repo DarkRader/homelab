@@ -20,7 +20,6 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TF_WORKING_DIR: infrastructure/iac/gcp/infra
   WIF_PROVIDER: projects/383516500345/locations/global/workloadIdentityPools/github-actions-pool/providers/github-oidc
   PLANNER_SA: terraform-planner@homelab-514120.iam.gserviceaccount.com
   APPLIER_SA: terraform-applier@homelab-514120.iam.gserviceaccount.com
@@ -30,9 +29,6 @@ jobs:
     name: Terraform Plan (PR)
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
       - name: Checkout
@@ -50,19 +46,12 @@ jobs:
           install_args: "terraform"
 
       - name: Terraform Format, Init & Plan
-        run: |
-          terraform fmt -check -recursive
-          terraform init
-          terraform validate
-          terraform plan -no-color -lock-timeout=5m
+        run: mise run --skip-tools terraform:plan-ci
 
   apply:
     name: Terraform Apply (Main)
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
       - name: Checkout
@@ -79,8 +68,5 @@ jobs:
         with:
           install_args: "terraform"
 
-      - name: Terraform Init & Apply
-        run: |
-          terraform init
-          terraform plan -out=tfplan -lock-timeout=5m
-          terraform apply -auto-approve tfplan
+      - name: Run Terraform Init & Apply
+        run: mise run --skip-tools terraform:apply-ci
