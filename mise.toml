@@ -69,3 +69,40 @@ flux bootstrap github \
   --path="./clusters/${CLUSTER}" \
   --personal
 """
+
+[tasks."terraform:init"]
+description = "Prepare your working directory for other commands"
+run = "terraform init"
+
+[tasks."terraform:validate"]
+description = "Check whether the configuration is valid"
+run = "terraform validate"
+
+[tasks."terraform:plan"]
+description = "Show changes required by the current configuration"
+run = "terraform plan"
+
+[tasks."terraform:apply"]
+description = "Create or update infrastructure"
+run = "terraform apply"
+
+[tasks."terraform:format"]
+description = "Reformat your configuration in the standard style"
+run = "terraform fmt -check -recursive"
+
+[tasks."terraform:plan-ci"]
+description = "Terraform Format, Init & Plan"
+run = """
+terraform fmt -check -recursive
+terraform init
+terraform validate
+terraform plan -no-color -lock-timeout=5m
+"""
+
+[tasks."terraform:apply-ci"]
+description = "Terraform Init & Apply"
+run = """
+terraform init
+terraform plan -out=tfplan -lock-timeout=5m
+terraform apply -auto-approve tfplan
+"""

@@ -50,11 +50,7 @@ jobs:
           install_args: "terraform"
 
       - name: Terraform Format, Init & Plan
-        run: |
-          terraform fmt -check -recursive
-          terraform init
-          terraform validate
-          terraform plan -no-color -lock-timeout=5m
+        run: mise run --skip-tools terraform:plan-ci
 
   apply:
     name: Terraform Apply (Main)
@@ -79,8 +75,5 @@ jobs:
         with:
           install_args: "terraform"
 
-      - name: Terraform Init & Apply
-        run: |
-          terraform init
-          terraform plan -out=tfplan -lock-timeout=5m
-          terraform apply -auto-approve tfplan
+      - name: Run Terraform Init & Apply
+        run: mise run --skip-tools terraform:apply-ci
