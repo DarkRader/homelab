@@ -31,6 +31,12 @@ variable "manage_version" {
   description = "Set to false for pre-existing secrets whose values should remain untouched"
 }
 
+variable "secret_version" {
+  type        = number
+  default     = 1
+  description = "Increment this number to rotate the generated value and publish a new GCP secret version"
+}
+
 variable "labels" {
   type    = map(string)
   default = {}
