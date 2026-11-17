@@ -11,7 +11,7 @@ data:
   LD_DB_USER: linkding
   LD_DB_DATABASE: linkding
   LD_DB_PORT: "5432"
-  LD_DB_HOST: postgres-cluster-rw.postgres.svc.cluster.local
+  LD_DB_HOST: linkding-db-cnpg-v0-rw
 
   # OIDC Configuration
   LD_ENABLE_OIDC: "True"
