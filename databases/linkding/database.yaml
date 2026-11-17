@@ -1,11 +1,19 @@
 apiVersion: postgresql.cnpg.io/v1
-kind: Database
+kind: Cluster
 metadata:
-  name: linkding-database
-  namespace: postgres
+  name: linkding-db-cnpg-v0
 spec:
-  cluster:
-    name: postgres-cluster
-  name: linkding
-  owner: linkding
-  ensure: present
+  description: Postgres cluster for the linkding application
+  instances: 2
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+  storage:
+    storageClass: local-path
+    size: 1Gi
+  bootstrap:
+    initdb:
+      database: linkding
+      owner: linkding
+      secret:
+        name: linkding-db-creds
