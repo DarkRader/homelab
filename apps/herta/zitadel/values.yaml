@@ -19,7 +19,7 @@ zitadel:
       Enabled: false
     Database:
       postgres:
-        Host: postgres-cluster-rw.postgres.svc.cluster.local
+        Host: zitadel-db-cnpg-v0-rw
         Port: 5432
         Database: zitadel
         User:
