@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - linkding
   - zitadel
-  - depricated/zitadel
-  - depricated/linkding

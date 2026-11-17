@@ -12,4 +12,4 @@ spec:
     name: flux-system
   timeout: 5m0s
   dependsOn:
-    - name: infrastructure-configs # <--- Waits until postgres-cluster is healthy!
+    - name: infrastructure-configs # <--- Waits for infrastructure configs (Cilium, External Secrets)
