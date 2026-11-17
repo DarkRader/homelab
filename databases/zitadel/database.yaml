@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: zitadel-db-cnpg-v0
+spec:
+  description: Postgres cluster for the zitadel application
+  instances: 2
+  affinity:
+    enablePodAntiAffinity: true
+    topologyKey: kubernetes.io/hostname
+  storage:
+    storageClass: local-path
+    size: 5Gi
+  bootstrap:
+    initdb:
+      database: zitadel
+      owner: zitadel
+      secret:
+        name: zitadel-db-creds
