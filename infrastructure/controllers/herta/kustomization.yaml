@@ -5,3 +5,4 @@ resources:
   - cilium
   - external-secrets
   - node-bluez
+  - cert-manager
