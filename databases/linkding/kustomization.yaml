@@ -3,4 +3,6 @@ kind: Kustomization
 namespace: linkding
 resources:
   - secrets.yaml
+  - objectstore.yaml
   - database.yaml
+  - scheduled-backup.yaml

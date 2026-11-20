@@ -17,3 +17,8 @@ spec:
       owner: linkding
       secret:
         name: linkding-db-creds
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: linkding-backup-store

@@ -1,0 +1,16 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: linkding-backup-store
+spec:
+  retentionPolicy: "30d"
+  configuration:
+    destinationPath: gs://linkding-cnpg-backup
+    googleCredentials:
+      applicationCredentials:
+        name: gcs-backup-creds
+        key: service-account-key.json
+    wal:
+      compression: gzip
+    data:
+      compression: gzip

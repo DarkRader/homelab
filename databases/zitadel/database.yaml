@@ -17,3 +17,8 @@ spec:
       owner: zitadel
       secret:
         name: zitadel-db-creds
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: zitadel-backup-store
