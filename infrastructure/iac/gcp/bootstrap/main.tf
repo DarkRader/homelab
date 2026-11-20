@@ -111,6 +111,7 @@ resource "google_project_iam_member" "applier_roles" {
     "roles/secretmanager.admin",
     "roles/storage.admin",
     "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountKeyAdmin",
     "roles/iam.workloadIdentityPoolAdmin",
     "roles/resourcemanager.projectIamAdmin",
   ])
