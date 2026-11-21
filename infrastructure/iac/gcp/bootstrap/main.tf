@@ -92,6 +92,17 @@ resource "google_service_account" "tf_applier" {
   display_name = "Terraform Main Applier (Write)"
 }
 
+# Custom role to allow reading GCS bucket IAM policies during Terraform plan
+resource "google_project_iam_custom_role" "storage_policy_viewer" {
+  role_id     = "storagePolicyViewer"
+  title       = "Storage Bucket Policy Viewer"
+  description = "Allows reading GCS bucket IAM policies for Terraform planning"
+  permissions = [
+    "storage.buckets.get",
+    "storage.buckets.getIamPolicy",
+  ]
+}
+
 # Planner IAM: Read-only project access + state lock access
 resource "google_project_iam_member" "planner_roles" {
   for_each = toset([
@@ -101,6 +112,12 @@ resource "google_project_iam_member" "planner_roles" {
   ])
   project = var.project_id
   role    = each.value
+  member  = "serviceAccount:${google_service_account.tf_planner.email}"
+}
+
+resource "google_project_iam_member" "planner_storage_policy_viewer" {
+  project = var.project_id
+  role    = google_project_iam_custom_role.storage_policy_viewer.id
   member  = "serviceAccount:${google_service_account.tf_planner.email}"
 }
 
