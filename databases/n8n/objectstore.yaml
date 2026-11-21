@@ -1,0 +1,16 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: n8n-backup-store
+spec:
+  retentionPolicy: "30d"
+  configuration:
+    destinationPath: gs://n8n-cnpg-backup
+    googleCredentials:
+      applicationCredentials:
+        name: gcs-backup-creds
+        key: service-account-key.json
+    wal:
+      compression: gzip
+    data:
+      compression: gzip
