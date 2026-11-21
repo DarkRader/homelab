@@ -93,9 +93,14 @@ resource "google_service_account" "tf_applier" {
 }
 
 # Planner IAM: Read-only project access + state lock access
-resource "google_project_iam_member" "planner_viewer" {
+resource "google_project_iam_member" "planner_roles" {
+  for_each = toset([
+    "roles/viewer",
+    "roles/iam.securityReviewer",
+    "roles/secretmanager.viewer",
+  ])
   project = var.project_id
-  role    = "roles/viewer"
+  role    = each.value
   member  = "serviceAccount:${google_service_account.tf_planner.email}"
 }
 
