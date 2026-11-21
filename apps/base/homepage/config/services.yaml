@@ -19,6 +19,11 @@
         href: http://ha.homenir.com
         description: Home Automation Hub
 
+    - n8n:
+        icon: si-n8n-#38bdf8
+        href: http://n8n.homenir.com
+        description: Workflow Automation Platform
+
 - Monitoring:
     - Uptime Kuma - Not Exist Yet:
         icon: si-uptimekuma-#38bdf8
