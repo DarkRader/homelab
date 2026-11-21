@@ -63,3 +63,35 @@ module "zitadel_masterkey" {
     app        = "zitadel"
   }
 }
+
+module "n8n_db_password" {
+  source         = "../modules/secret"
+  secret_id      = "N8N_DB_PASSWORD"
+  manage_version = true
+
+  generate = {
+    method = "base64"
+    length = 32
+  }
+
+  labels = {
+    managed-by = "terraform"
+    app        = "n8n"
+  }
+}
+
+module "n8n_encryption_key" {
+  source         = "../modules/secret"
+  secret_id      = "N8N_ENCRYPTION_KEY"
+  manage_version = true
+
+  generate = {
+    method = "base64"
+    length = 32
+  }
+
+  labels = {
+    managed-by = "terraform"
+    app        = "n8n"
+  }
+}

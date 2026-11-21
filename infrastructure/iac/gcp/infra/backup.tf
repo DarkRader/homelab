@@ -19,6 +19,13 @@ resource "google_storage_bucket_iam_member" "cnpg_backup_zitadel" {
   member = "serviceAccount:${google_service_account.cnpg_backup.email}"
 }
 
+# Grant objectAdmin on the n8n backup bucket
+resource "google_storage_bucket_iam_member" "cnpg_backup_n8n" {
+  bucket = module.cnpg_backup_n8n.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${google_service_account.cnpg_backup.email}"
+}
+
 # Generate service account key
 resource "google_service_account_key" "cnpg_backup" {
   service_account_id = google_service_account.cnpg_backup.name
