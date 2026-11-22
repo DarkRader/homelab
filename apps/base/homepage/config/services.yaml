@@ -19,7 +19,7 @@
         href: http://ha.homenir.com
         description: Home Automation Hub
 
-    - n8n:
+    - N8n:
         icon: si-n8n-#38bdf8
         href: http://n8n.homenir.com
         description: Workflow Automation Platform

@@ -18,25 +18,25 @@ spec:
         fsGroup: 33
 
       containers:
-      - name: linkding
-        image: sissbruecker/linkding:1.45.0
+        - name: linkding
+          image: sissbruecker/linkding:1.47.0
 
-        securityContext:
-          allowPrivilegeEscalation: false
+          securityContext:
+            allowPrivilegeEscalation: false
 
-        envFrom:
-          - configMapRef:
-              name: linkding-configmap
-          - secretRef:
-              name: linkding-secrets
+          envFrom:
+            - configMapRef:
+                name: linkding-configmap
+            - secretRef:
+                name: linkding-secrets
 
-        ports:
-          - containerPort: 4001
-            protocol: TCP
+          ports:
+            - containerPort: 4001
+              protocol: TCP
 
-        volumeMounts:
-          - name: linkding-data
-            mountPath: /etc/linkding/data
+          volumeMounts:
+            - name: linkding-data
+              mountPath: /etc/linkding/data
 
       restartPolicy: Always
 
