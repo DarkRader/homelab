@@ -1,0 +1,16 @@
+{
+  "name": "homelab",
+  "image": "ubuntu:24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers-extra/features/mise:1": {}
+  },
+  "remoteUser": "ubuntu",
+  "containerEnv": {
+    "MISE_YES": "1"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:HOME}/.local/share/mise/shims:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "git config --global --add safe.directory \"${containerWorkspaceFolder}\" && echo 'eval \"$(mise activate bash)\"' >> ~/.bashrc && echo 'eval \"$(mise activate zsh)\"' >> ~/.zshrc && mise trust && mise install"
+}
