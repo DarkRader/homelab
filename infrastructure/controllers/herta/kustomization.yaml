@@ -7,3 +7,4 @@ resources:
   - node-bluez
   - cert-manager
   - plugin-barman-cloud
+  - external-dns

@@ -1,3 +1,9 @@
+domainFilters:
+  - homenir.com
+
+txtOwnerId: herta
+txtPrefix: "k8s."
+
 provider:
   name: cloudflare
 
