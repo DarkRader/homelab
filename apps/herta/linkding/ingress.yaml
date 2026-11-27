@@ -4,8 +4,6 @@ metadata:
   name: linkding
   labels:
     app.kubernetes.io/name: linkding
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: linkding.homenir.com
 spec:
   ingressClassName: cilium
   rules:
