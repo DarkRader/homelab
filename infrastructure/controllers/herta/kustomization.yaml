@@ -8,3 +8,4 @@ resources:
   - cert-manager
   - plugin-barman-cloud
   - external-dns
+  - cloudflare-tunnel
