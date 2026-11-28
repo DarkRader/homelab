@@ -11,7 +11,7 @@
 - Application:
     - Linkding:
         icon: mdi-bookmark-box-multiple-#38bdf8
-        href: http://linkding.homenir.com
+        href: https://linkding.homenir.com
         description: Bookmark Manager
 
     - Home Assistant:
@@ -21,7 +21,7 @@
 
     - N8n:
         icon: si-n8n-#38bdf8
-        href: http://n8n.homenir.com
+        href: https://n8n.homenir.com
         description: Workflow Automation Platform
 
 - Monitoring:
@@ -41,7 +41,7 @@
 - Security and Identity:
     - Zitadel:
         icon: mdi-shield-key-#38bdf8
-        href: http://auth.homenir.com
+        href: https://auth.homenir.com
         description: Identity & Access Management
     - Vaulwarden - Not Exist Yet:
         icon: si-vaultwarden-#38bdf8

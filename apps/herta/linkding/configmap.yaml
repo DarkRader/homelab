@@ -16,8 +16,8 @@ data:
   # OIDC Configuration
   LD_ENABLE_OIDC: "True"
   LD_DISABLE_LOGIN_FORM: "True"
-  OIDC_OP_AUTHORIZATION_ENDPOINT: "http://auth.homenir.com/oauth/v2/authorize"
-  OIDC_OP_TOKEN_ENDPOINT: "http://auth.homenir.com/oauth/v2/token"
-  OIDC_OP_USER_ENDPOINT: "http://auth.homenir.com/oidc/v1/userinfo"
-  OIDC_OP_JWKS_ENDPOINT: "http://auth.homenir.com/oauth/v2/keys"
+  OIDC_OP_AUTHORIZATION_ENDPOINT: "https://auth.homenir.com/oauth/v2/authorize"
+  OIDC_OP_TOKEN_ENDPOINT: "https://auth.homenir.com/oauth/v2/token"
+  OIDC_OP_USER_ENDPOINT: "https://auth.homenir.com/oidc/v1/userinfo"
+  OIDC_OP_JWKS_ENDPOINT: "https://auth.homenir.com/oauth/v2/keys"
   OIDC_RP_CLIENT_ID: "399177444487070333"
