@@ -4,8 +4,6 @@ metadata:
   name: n8n
   labels:
     app.kubernetes.io/name: n8n
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: n8n.homenir.com
 spec:
   ingressClassName: cilium
   rules:
